@@ -1,6 +1,7 @@
 from flask import Flask, request
 
 app = Flask(__name__)
+status = ""
 
 # TODO: figure out get requests in java, get this setup on heroku
 
@@ -13,6 +14,8 @@ def hello():
 def update_status():
     status = request.args['status']
 
+@app.route('/get-status')
+def get_status():
     return '''<h1>Current status: {}</h1>'''.format(status)
 
 if __name__ == '__main__':
