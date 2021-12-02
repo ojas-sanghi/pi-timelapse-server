@@ -26,6 +26,7 @@ def get_status():
     return '''
     <h1>
         Current status: {}
+        <br>
         Time received: {}
     </h1>
 
