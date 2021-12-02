@@ -1,10 +1,10 @@
-from datetime import datetime, time
+from datetime import datetime
 from flask import Flask, request
 
 app = Flask(__name__)
 
-status = ""
-time_received = ""
+status = "No status yet"
+time_received = datetime.now()
 
 @app.route("/")
 def hello():
