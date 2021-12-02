@@ -1,9 +1,10 @@
+from datetime import datetime, time
 from flask import Flask, request
 
 app = Flask(__name__)
-status = ""
 
-# TODO: figure out get requests in java, get this setup on heroku
+status = ""
+time_received = ""
 
 @app.route("/")
 def hello():
@@ -12,18 +13,23 @@ def hello():
 # http://127.0.0.1:5000/update-status?status=Python
 @app.route('/update-status')
 def update_status():
-    global status
+    global status, time_received
+    
     status = request.args['status']
+    time_received = datetime.now()
+    
     print("GOT! STATUS!")
+    return ""
 
 @app.route('/get-status')
 def get_status():
-    return '''<h1>Current status: {}</h1>'''.format(status)
+    return '''
+    <h1>
+        Current status: {}
+        Time received: {}
+    </h1>
 
-    old_status = status
-    while True:
-        if status != old_status:
-            get_status()
+    '''.format(status, time_received.strftime("%H:%M:%S %d %B %Y"))
 
 if __name__ == '__main__':
     # run app in debug mode on port 5000
