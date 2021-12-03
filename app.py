@@ -1,5 +1,5 @@
 from datetime import datetime
-import pytz
+# import pytz
 from flask import Flask, request
 
 app = Flask(__name__)
@@ -18,8 +18,8 @@ def update_status():
     
     status = request.args['status']
 
-    mst = pytz.timezone("America/Phoenix")
-    time_received = datetime.now(mst)
+    # mst = pytz.timezone("America/Phoenix")
+    time_received = datetime.now() #mst
     
     print("GOT! STATUS!")
     return ""
