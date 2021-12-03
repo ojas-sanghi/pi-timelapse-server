@@ -1,4 +1,4 @@
-from datetime import date, datetime
+from datetime import datetime
 import pytz
 from flask import Flask, request
 
@@ -26,20 +26,21 @@ def update_status():
 
 @app.route('/get-status')
 def get_status():
-    timediff = datetime.now() - time_received
-    timediff_s = timediff.total_seconds()
-    minutes_diff  = divmod(timediff_s, 60)[0]
+    # timediff = datetime.now() - time_received
+    # timediff_s = timediff.total_seconds()
+    # minutes_diff  = divmod(timediff_s, 60)[0]
+        #     <br>
+        # Time since last: {}
 
     return '''
     <h1>
         Current status: {}
         <br>
         Time received: {}
-        <br>
-        Time since last: {}
+
     </h1>
 
-    '''.format(status, time_received.strftime("%H:%M:%S %d %B %Y"), minutes_diff)
+    '''.format(status, time_received.strftime("%H:%M:%S %d %B %Y")) #, minutes_diff)
 
 if __name__ == '__main__':
     # run app in debug mode on port 5000
